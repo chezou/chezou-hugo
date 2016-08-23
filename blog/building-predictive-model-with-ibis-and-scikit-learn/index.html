@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Don&#39;t panic">
+
+<base href="https://chezou.github.io/">
+<title>
+
+
+     Building predictive model with Ibis and scikit-learn 
+
+</title>
+<link rel="canonical" href="https://chezou.github.io/blog/building-predictive-model-with-ibis-and-scikit-learn/">
+
+
+<script type="text/javascript">
+    var baseURL = 'https:\/\/chezou.github.io\/';
+    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
+    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
+        window.location.protocol = 'https:';
+    }
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="https://chezou.github.io/css/reset.css">
+<link rel="stylesheet" href="https://chezou.github.io/css/pygments.css">
+<link rel="stylesheet" href="https://chezou.github.io/css/main.css">
+
+
+    <link rel="stylesheet" href="https://chezou.github.io/css/override.css">
+
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://chezou.github.io/img/leaf.ico"
+
+>
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header"> 
+    <div class="container">
+        <div class="content">
+            <a href="https://chezou.github.io/"><div class="name">Michiaki Ariga</div></a>
+            <nav>
+                <ul>
+                    <a href="https://chezou.github.io/blog/"><li>Blog</li></a>
+                    <a href="https://chezou.github.io/about/"><li>About</li></a>
+                    <a href="https://chezou.github.io/code/"><li>Code</li></a>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/chezou" target="_blank">
+                <i class="icon ion-social-github"></i>
+            </a>
+        
+        
+        
+            <a href="//twitter.com/chezou" target="_blank">
+                <i class="icon ion-social-twitter"></i>
+            </a>
+        
+
+        
+            <a href="//linkedin.com/in/akiariga" target="_blank">
+                <i class="icon ion-social-linkedin"></i>
+            </a>
+        
+
+        
+
+        
+
+        
+            <a href="mailto:chezou@gmail.com">
+                <i class="icon ion-ios-email larger"></i>
+            </a>
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Building predictive model with Ibis and scikit-learn
+
+</div>
+
+                    <div class="initials"><a href="https://chezou.github.io/">ad</a></div>
+                </div>
+                <div class="meta">
+                    <div class="date" title="Tue Aug 23 2016 13:46:03 JST">Aug 23, 2016</div>
+                    <div class="reading-time"><div class="middot"></div>2 minutes read</div>
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<h1 id="tl-dr">tl;dr</h1>
+
+<ul>
+<li>visualising <a href="http://grouplens.org/datasets/movielens/">MovieLens</a> 20M data (famous movie rating data) with <a href="http://www.ibis-project.org/">Ibis</a></li>
+<li>build predictive model for movie favor with scikit-learn</li>
+<li><a href="https://github.com/chezou/ibis-demo">repo</a> / <a href="https://github.com/chezou/ibis-demo/blob/master/ibis_demo_en.ipynb">notebook</a></li>
+</ul>
+
+<h1 id="what-is-ibis">What is Ibis?</h1>
+
+<p>Ibis is a bridge between Python and Big Data. Ibis enables pandas handling Big Data.</p>
+
+<p><img src="https://chezou.github.io/blog/ibis-overview1.png" alt="" /></p>
+
+<p>For more detail, see Wes&rsquo;s presentation.</p>
+
+<p><iframe src="//www.slideshare.net/slideshow/embed_code/key/MGvd2c7LUgy9et" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/wesm/ibis-scaling-python-analytics-on-hadoop-and-impala" title="Ibis: Scaling Python Analytics on Hadoop and Impala" target="_blank">Ibis: Scaling Python Analytics on Hadoop and Impala</a> </strong> from <strong><a href="//www.slideshare.net/wesm" target="_blank">Wes McKinney</a></strong> </div></p>
+
+<p>As you know, pandas is known as a killer application for data analysis. In my previous job, which is known as a developer of <a href="https://speakerdeck.com/a_matsuda/the-recipe-for-the-worlds-largest-rails-monolith">world largest monolithic Ruby on Rails application</a>, many Rails developer attracted with pandas and Jupyter notebook for sharing analysis result.</p>
+
+<h1 id="why-ibis">Why Ibis?</h1>
+
+<p>pandas loads data on memory, so we have to filter with some SQL before analyzing. But we actualy want to get insight and handle without SQL.</p>
+
+<h1 id="preparation">Preparation</h1>
+
+<h2 id="impala-cluster">Impala cluster</h2>
+
+<ul>
+<li>CDH 5.7 with Cloudera Director 2.1</li>
+<li>required port
+
+<ul>
+<li>impalad node&rsquo;s 21050 port</li>
+<li>NN&rsquo;s 50070 port</li>
+</ul></li>
+<li>table is created with parquet on S3</li>
+</ul>
+
+<h2 id="ibis">Ibis</h2>
+
+<ul>
+<li>Python 3.5</li>
+<li>using wheel and virtualenv, I didn&rsquo;t use conda</li>
+</ul>
+
+<h1 id="notebook">Notebook</h1>
+
+<script src="https://gist.github.com/chezou/90950ab7a17df6d8dda972752787a246.js"></script>
+
+<p>Full notebook repo is <a href="https://github.com/chezou/ibis-demo/">here</a>.
+I also executed same code for Redshift, but several dialects prevent exection&hellip;</p>
+
+<p><a href="https://github.com/chezou/ibis-demo/blob/master/ibis_demo_redshift.ipynb">https://github.com/chezou/ibis-demo/blob/master/ibis_demo_redshift.ipynb</a></p>
+
+<h1 id="faq">FAQ</h1>
+
+<h2 id="what-is-the-difference-between-pyspark">What is the difference between PySpark?</h2>
+
+<ul>
+<li>Easy to setup. It is just like connecting DB</li>
+<li>Fast x10. So that we can x10 experiences. It makes us innovations!</li>
+<li>We can rapid prototyping with Ibis.</li>
+</ul>
+
+<h2 id="which-is-prefer-to-build-model-ibis-scikit-learn-or-spark-mllib">Which is prefer to build model Ibis + scikit-learn or Spark + MLlib?</h2>
+
+<ul>
+<li>It depends on data size.</li>
+<li><a href="https://www.infoq.com/news/2016/07/meson-framework-netflix">Netflix uses Spark and R for building predictive models</a>. Netflix uses R in order to model filtered data such as specific country, and they use Spark for global model.</li>
+</ul>
+
+                <br>
+                <p><a href="https://chezou.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("XYZ");
+    pageTracker._trackPageview();
+} catch(err) {}
+</script>
+
+
+
+</body>
+</html>
+

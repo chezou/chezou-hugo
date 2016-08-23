@@ -1,4 +1,4 @@
-baseurl = "https://chezou.github.io/"
+baseurl = "https://chezo.uno/"
 builddrafts = false
 canonifyurls = true
 contentdir = "content"

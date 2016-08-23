@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>chezou</title>
-    <link>https://chezou.github.io/</link>
+    <link>https://chezo.uno/</link>
     <description>Recent content on chezou</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Tue, 23 Aug 2016 15:17:52 +0900</lastBuildDate>
-    <atom:link href="https://chezou.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://chezo.uno/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>code</title>
-      <link>https://chezou.github.io/code/</link>
+      <link>https://chezo.uno/code/</link>
       <pubDate>Tue, 23 Aug 2016 15:17:52 +0900</pubDate>
       
-      <guid>https://chezou.github.io/code/</guid>
+      <guid>https://chezo.uno/code/</guid>
       <description>
 
 &lt;h2 id=&#34;codes&#34;&gt;Codes&lt;/h2&gt;
@@ -63,10 +63,10 @@
     
     <item>
       <title>Building predictive model with Ibis and scikit-learn</title>
-      <link>https://chezou.github.io/blog/building-predictive-model-with-ibis-and-scikit-learn/</link>
+      <link>https://chezo.uno/blog/building-predictive-model-with-ibis-and-scikit-learn/</link>
       <pubDate>Tue, 23 Aug 2016 13:46:03 +0900</pubDate>
       
-      <guid>https://chezou.github.io/blog/building-predictive-model-with-ibis-and-scikit-learn/</guid>
+      <guid>https://chezo.uno/blog/building-predictive-model-with-ibis-and-scikit-learn/</guid>
       <description>
 
 &lt;h1 id=&#34;tl-dr&#34;&gt;tl;dr&lt;/h1&gt;
@@ -81,7 +81,7 @@
 
 &lt;p&gt;Ibis is a bridge between Python and Big Data. Ibis enables pandas handling Big Data.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://chezou.github.io/blog/ibis-overview1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://chezo.uno/blog/ibis-overview1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;For more detail, see Wes&amp;rsquo;s presentation.&lt;/p&gt;
 
@@ -145,10 +145,10 @@ I also executed same code for Redshift, but several dialects prevent exection&am
     
     <item>
       <title>about</title>
-      <link>https://chezou.github.io/about/</link>
+      <link>https://chezo.uno/about/</link>
       <pubDate>Tue, 23 Aug 2016 13:41:42 +0900</pubDate>
       
-      <guid>https://chezou.github.io/about/</guid>
+      <guid>https://chezo.uno/about/</guid>
       <description>
 
 &lt;h2 id=&#34;michiaki-ariga&#34;&gt;Michiaki Ariga&lt;/h2&gt;

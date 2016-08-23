@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fixed on chezou</title>
-    <link>https://chezou.github.io/fixed/</link>
+    <link>https://chezo.uno/fixed/</link>
     <description>Recent content in Fixed on chezou</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Tue, 23 Aug 2016 15:17:52 +0900</lastBuildDate>
-    <atom:link href="https://chezou.github.io/fixed/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://chezo.uno/fixed/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>code</title>
-      <link>https://chezou.github.io/code/</link>
+      <link>https://chezo.uno/code/</link>
       <pubDate>Tue, 23 Aug 2016 15:17:52 +0900</pubDate>
       
-      <guid>https://chezou.github.io/code/</guid>
+      <guid>https://chezo.uno/code/</guid>
       <description>
 
 &lt;h2 id=&#34;codes&#34;&gt;Codes&lt;/h2&gt;
@@ -63,10 +63,10 @@
     
     <item>
       <title>about</title>
-      <link>https://chezou.github.io/about/</link>
+      <link>https://chezo.uno/about/</link>
       <pubDate>Tue, 23 Aug 2016 13:41:42 +0900</pubDate>
       
-      <guid>https://chezou.github.io/about/</guid>
+      <guid>https://chezo.uno/about/</guid>
       <description>
 
 &lt;h2 id=&#34;michiaki-ariga&#34;&gt;Michiaki Ariga&lt;/h2&gt;

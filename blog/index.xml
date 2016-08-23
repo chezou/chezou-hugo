@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on chezou</title>
-    <link>https://chezou.github.io/blog/</link>
+    <link>https://chezo.uno/blog/</link>
     <description>Recent content in Blog on chezou</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Tue, 23 Aug 2016 13:46:03 +0900</lastBuildDate>
-    <atom:link href="https://chezou.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://chezo.uno/blog/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Building predictive model with Ibis and scikit-learn</title>
-      <link>https://chezou.github.io/blog/building-predictive-model-with-ibis-and-scikit-learn/</link>
+      <link>https://chezo.uno/blog/building-predictive-model-with-ibis-and-scikit-learn/</link>
       <pubDate>Tue, 23 Aug 2016 13:46:03 +0900</pubDate>
       
-      <guid>https://chezou.github.io/blog/building-predictive-model-with-ibis-and-scikit-learn/</guid>
+      <guid>https://chezo.uno/blog/building-predictive-model-with-ibis-and-scikit-learn/</guid>
       <description>
 
 &lt;h1 id=&#34;tl-dr&#34;&gt;tl;dr&lt;/h1&gt;
@@ -29,7 +29,7 @@
 
 &lt;p&gt;Ibis is a bridge between Python and Big Data. Ibis enables pandas handling Big Data.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://chezou.github.io/blog/ibis-overview1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://chezo.uno/blog/ibis-overview1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;For more detail, see Wes&amp;rsquo;s presentation.&lt;/p&gt;
 

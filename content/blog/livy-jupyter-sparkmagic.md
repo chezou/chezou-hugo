@@ -1,9 +1,10 @@
 +++
 date = "2016-08-24T16:07:02+09:00"
-draft = true
+draft = false
 title = "livy & Jupyter notebook & sparkmagic = Powerful & Easy notebook for Data Scientist"
 
 +++
+
 
 livy is a REST server of Spark. You can see [the talk of the Spark Summit 2016](https://spark-summit.org/2016/events/livy-a-rest-web-service-for-apache-spark/),  [Microsoft uses livy for HDInsight with Jupyter notebook and sparkmagic](https://azure.microsoft.com/en-us/documentation/articles/hdinsight-apache-spark-jupyter-notebook-kernels/). [Jupyter notebook](http://jupyter.org/) is one of the most popular notebook OSS within data scientists. Using sparkmagic + Jupyter notebook, data scientists can execute ad-hoc Spark job easily.
 

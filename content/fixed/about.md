@@ -7,7 +7,7 @@ title = "about"
 
 ## Michiaki Ariga
 
-Sales Engineer at Cloudera.
+Sales Engineer / Field Data Scientist at Cloudera.
 
 I'm interested in natural language processing and machine learning, and applying those technologies in production.
 I love to think how leverage data with technology for bussiness.

@@ -13,7 +13,7 @@ I'm interested in natural language processing and machine learning, and applying
 I love to think how leverage data with technology for bussiness.
 I also love to write Ruby, Python and Julia for ML.
 
-I am a podcaster of technical podcast[rubyist.club](https://rubyist.club/).
+I am a podcaster of technical podcast [rubyist.club](https://rubyist.club/).
 
 ## Codes & Notebooks
 

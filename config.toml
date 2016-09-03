@@ -8,7 +8,7 @@ publishdir = "public"
 author = "Michiaki Ariga"
 title = "Democratizing Data"
 pygmentsuseclasses = true
-#disqusShortname = "cocoaexamplesite" # Comment out to disable Disqus.
+disqusShortname = "chezou" # Comment out to disable Disqus.
 pluralizelisttitles = false
 
 [permalinks]

@@ -17,7 +17,7 @@ I am a podcaster of technical podcast[rubyist.club](https://rubyist.club/).
 
 ## Codes & Notebooks
 
-See [code](code page)
+See [code](code) page
 
 ## Communities
 

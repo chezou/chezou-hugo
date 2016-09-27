@@ -15,6 +15,8 @@ title = "code"
   - Julia binding of Japanese morphological analyzer MeCab
 - [julia-100-exercises](https://github.com/chezou/julia-100-exercises)
   - julia version of [100 numpy exercises](http://www.loria.fr/~rougier/teaching/numpy.100/)
+- [tabula-py](https://github.com/chezou/tabula-py)
+  - Simple wrapper of tabula-java: extract table from PDF into pandas DataFrame
 
 For full codes list, see [GitHub](//github.com/chezou)
 

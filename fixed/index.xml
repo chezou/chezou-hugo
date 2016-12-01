@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Fixed on Democratizing Data</title>
-    <link>https://chezo.uno/fixed/</link>
-    <description>Recent content in Fixed on Democratizing Data</description>
+    <title>Fixed-rss on Democratizing Data</title>
+    <link>https://chezo.uno/fixed/index.xml</link>
+    <description>Recent content in Fixed-rss on Democratizing Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Tue, 23 Aug 2016 15:17:52 +0900</lastBuildDate>
@@ -71,17 +71,19 @@
 
 &lt;h2 id=&#34;michiaki-ariga&#34;&gt;Michiaki Ariga&lt;/h2&gt;
 
-&lt;p&gt;Sales Engineer at Cloudera.&lt;/p&gt;
+&lt;p&gt;Sales Engineer / Field Data Scientist at Cloudera.&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;m interested in natural language processing and machine learning, and applying those technologies in production.
 I love to think how leverage data with technology for bussiness.
 I also love to write Ruby, Python and Julia for ML.&lt;/p&gt;
 
-&lt;p&gt;I am a podcaster of technical podcast&lt;a href=&#34;https://rubyist.club/&#34;&gt;rubyist.club&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I am a podcaster of technical podcast &lt;a href=&#34;https://rubyist.club/&#34;&gt;rubyist.club&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://chezou.hatenablog.com/&#34;&gt;Japanese Blog&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;codes-notebooks&#34;&gt;Codes &amp;amp; Notebooks&lt;/h2&gt;
 
-&lt;p&gt;See &lt;a href=&#34;code page&#34;&gt;code&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&#34;code&#34;&gt;code&lt;/a&gt; page&lt;/p&gt;
 
 &lt;h2 id=&#34;communities&#34;&gt;Communities&lt;/h2&gt;
 

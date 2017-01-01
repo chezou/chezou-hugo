@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Demociratizing Data">
+
+<base href="https://chezo.uno/">
+<title>
+
+
+     Text-to-speech for Web site using Amazon Polly and Ruby 
+
+</title>
+<link rel="canonical" href="https://chezo.uno/blog/text-to-speech-for-web-site-using-amazon-polly-and-ruby/">
+
+
+<script type="text/javascript">
+    var baseURL = 'https:\/\/chezo.uno\/';
+    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
+    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
+        window.location.protocol = 'https:';
+    }
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="https://chezo.uno/css/reset.css">
+<link rel="stylesheet" href="https://chezo.uno/css/pygments.css">
+<link rel="stylesheet" href="https://chezo.uno/css/main.css">
+
+
+    <link rel="stylesheet" href="https://chezo.uno/css/override.css">
+
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://chezo.uno/favicon.ico"
+
+>
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header"> 
+    <div class="container">
+        <div class="content">
+            <a href="https://chezo.uno/"><div class="name">Michiaki Ariga</div></a>
+            <nav>
+                <ul>
+                    <a href="https://chezo.uno/blog/"><li>Blog</li></a>
+                    <a href="https://chezo.uno/about/"><li>About</li></a>
+                    <a href="https://chezo.uno/code/"><li>Code</li></a>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/chezou" target="_blank">
+                <i class="icon ion-social-github"></i>
+            </a>
+        
+        
+        
+            <a href="//twitter.com/chezou" target="_blank">
+                <i class="icon ion-social-twitter"></i>
+            </a>
+        
+
+        
+            <a href="//linkedin.com/in/akiariga" target="_blank">
+                <i class="icon ion-social-linkedin"></i>
+            </a>
+        
+
+        
+
+        
+
+        
+            <a href="mailto:chezou@gmail.com">
+                <i class="icon ion-ios-email larger"></i>
+            </a>
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Text-to-speech for Web site using Amazon Polly and Ruby
+
+</div>
+
+                    <div class="initials"><a href="https://chezo.uno/">ad</a></div>
+                </div>
+                <div class="meta">
+                    <div class="date" title="Fri Dec 2 2016 00:03:49 JST">Dec 2, 2016</div>
+                    <div class="reading-time"><div class="middot"></div>2 minutes read</div>
+                </div>
+            </div>
+            <div class="markdown">
+                <p>Amazon Polly, Text-to-speech service from AWS was announced at today&rsquo;s re:Invent.</p>
+
+<p><a href="https://aws.amazon.com/blogs/aws/polly-text-to-speech-in-47-voices-and-24-languages/">Amazon Polly — Text to Speech in 47 Voices and 24 Languages</a></p>
+
+<p>The great thing about Amazon Polly is that we can use TTS easily with AWS CLI. The price is free for up to 5 million characters a month, if over that limitation, it is very cheap with $ 0.000004/character. If you synthesize <a href="https://en.wikipedia.org/wiki/Adventures_of_Huckleberry_Finn">Adventures of Huckleberry Finn</a>, it costs about only $2.4.</p>
+
+<p>Here is the example code of Polly with AWS CLI tool.</p>
+
+<pre><code>$ aws polly synthesize-speech \
+  --output-format mp3 --voice-id Joanna \
+  --text &quot;Hello my name is Joanna.&quot; \
+  joanna.mp3
+</code></pre>
+
+<p>As of December 1, 2016, they support the following 24 languages mainly in European languages.</p>
+
+<ul>
+<li>Icelandic</li>
+<li>Italian</li>
+<li>Welsh</li>
+<li>Dutch</li>
+<li>Swedish</li>
+<li>Spanish (Castile)</li>
+<li>Spanish (USA)</li>
+<li>Danish</li>
+<li>Turkish</li>
+<li>German</li>
+<li>Norwegian</li>
+<li>French</li>
+<li>French (Canada)</li>
+<li>Portuguese</li>
+<li>Portuguese (Brazil)</li>
+<li>Polish</li>
+<li>Romanian</li>
+<li>Russian</li>
+<li>Japanese</li>
+<li>English (India)</li>
+<li>English (Welsh)</li>
+<li>English (Australia)</li>
+<li>English (US)</li>
+<li>English (UK)</li>
+</ul>
+
+<p>I think Japanese speech sounds very natural. Sometime it will be a strange accent, but if I register a word with Lexicon, we can improve the quality by myself. Japanese sample voice as following:</p>
+
+<p><a href="http://chezou.tumblr.com/post/153883804175/amazon">http://chezou.tumblr.com/post/153883804175/amazon</a></p>
+
+<p>I often find interesting articles in Medium, but since reading long English article is a bit tough for non native English speaker like me. So I came up with if I made the article to voice, I would listen it easily. That’s why I wrote the code to convert articles to speech with Ruby like following:</p>
+
+<script src="https://gist.github.com/chezou/9919f5065cbc52f8d0349d3084ac3616.js"></script>
+
+<p>There are some important restrictions of API:
+- The number of characters per API is 1500 characters
+- Long voice is truncated after 5 minutes</p>
+
+<p>Read <a href="http://docs.aws.amazon.com/polly/latest/dg/limits.html">more in detail…</a></p>
+
+<p>Actually, I tried to convert the following article just found in Hckr news. I can hear it comfortably.</p>
+
+<p><a href="https://blog.data.gov.sg/how-we-caught-the-circle-line-rogue-train-with-data-79405c86ab6a#.7elmtv7o7">How the Circle Line rogue train was caught with data</a></p>
+
+<p>If I did a bit more hard work, I can generate sounds of the latest articles on a specific site from RSS and play back the sounds from mobile saved in Dropbox.</p>
+
+<p>Honestly, Amazon Polly is cheap, multilingual and natural as it is, and API is easy to use like other AWS services. It makes me feel that companies in Japan that have worked hard for existing TTS systems are in very difficult time. As a developer, I am looking forward to using various purpose and get more better services using Polly.</p>
+
+                <br>
+                <p><a href="https://chezo.uno/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'chezou';
+    var disqus_identifier = 'https:\/\/chezo.uno\/blog\/text-to-speech-for-web-site-using-amazon-polly-and-ruby\/';
+    var disqus_title = 'Text-to-speech for Web site using Amazon Polly and Ruby';
+    var disqus_url = 'https:\/\/chezo.uno\/blog\/text-to-speech-for-web-site-using-amazon-polly-and-ruby\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-21840244-7");
+    pageTracker._trackPageview();
+} catch(err) {}
+</script>
+
+
+
+</body>
+</html>
+

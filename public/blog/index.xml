@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Democratizing Data</title>
-    <link>https://chezo.uno/blog/</link>
+    <link>https://chezo.uno/blog/index.xml</link>
     <description>Recent content in Blog on Democratizing Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>

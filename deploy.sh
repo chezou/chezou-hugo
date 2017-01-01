@@ -6,7 +6,7 @@ echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 hugo -t cocoa # if using a theme, replace by `hugo -t <yourtheme>`
 
 # Go To Public folder
-cd public
+#cd public
 # Add changes to git.
 git add -A
 
@@ -18,7 +18,9 @@ fi
 git commit -m "$msg"
 
 # Push source and build repos.
-git push -f origin master
+git push origin master
+git subtree push --prefix=public git@github.com:chezou/chezou.github.io.git master
+
 
 # Come Back
-cd ..
+#cd ..

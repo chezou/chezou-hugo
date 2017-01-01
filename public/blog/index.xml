@@ -1,86 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog-rss on Democratizing Data</title>
-    <link>https://chezo.uno/blog/index.xml</link>
-    <description>Recent content in Blog-rss on Democratizing Data</description>
+    <title>Blog on Democratizing Data</title>
+    <link>https://chezo.uno/blog/</link>
+    <description>Recent content in Blog on Democratizing Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 02 Dec 2016 00:03:49 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 24 Aug 2016 16:07:02 +0900</lastBuildDate>
     <atom:link href="https://chezo.uno/blog/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Text-to-speech for Web site using Amazon Polly and Ruby</title>
-      <link>https://chezo.uno/blog/text-to-speech-for-web-site-using-amazon-polly-and-ruby/</link>
-      <pubDate>Fri, 02 Dec 2016 00:03:49 +0900</pubDate>
-      
-      <guid>https://chezo.uno/blog/text-to-speech-for-web-site-using-amazon-polly-and-ruby/</guid>
-      <description>&lt;p&gt;Amazon Polly, Text-to-speech service from AWS was announced at today&amp;rsquo;s re:Invent.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://aws.amazon.com/blogs/aws/polly-text-to-speech-in-47-voices-and-24-languages/&#34;&gt;Amazon Polly — Text to Speech in 47 Voices and 24 Languages&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The great thing about Amazon Polly is that we can use TTS easily with AWS CLI. The price is free for up to 5 million characters a month, if over that limitation, it is very cheap with $ 0.000004/character. If you synthesize &lt;a href=&#34;https://en.wikipedia.org/wiki/Adventures_of_Huckleberry_Finn&#34;&gt;Adventures of Huckleberry Finn&lt;/a&gt;, it costs about only $2.4.&lt;/p&gt;
-
-&lt;p&gt;Here is the example code of Polly with AWS CLI tool.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ aws polly synthesize-speech \
-  --output-format mp3 --voice-id Joanna \
-  --text &amp;quot;Hello my name is Joanna.&amp;quot; \
-  joanna.mp3
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As of December 1, 2016, they support the following 24 languages mainly in European languages.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Icelandic&lt;/li&gt;
-&lt;li&gt;Italian&lt;/li&gt;
-&lt;li&gt;Welsh&lt;/li&gt;
-&lt;li&gt;Dutch&lt;/li&gt;
-&lt;li&gt;Swedish&lt;/li&gt;
-&lt;li&gt;Spanish (Castile)&lt;/li&gt;
-&lt;li&gt;Spanish (USA)&lt;/li&gt;
-&lt;li&gt;Danish&lt;/li&gt;
-&lt;li&gt;Turkish&lt;/li&gt;
-&lt;li&gt;German&lt;/li&gt;
-&lt;li&gt;Norwegian&lt;/li&gt;
-&lt;li&gt;French&lt;/li&gt;
-&lt;li&gt;French (Canada)&lt;/li&gt;
-&lt;li&gt;Portuguese&lt;/li&gt;
-&lt;li&gt;Portuguese (Brazil)&lt;/li&gt;
-&lt;li&gt;Polish&lt;/li&gt;
-&lt;li&gt;Romanian&lt;/li&gt;
-&lt;li&gt;Russian&lt;/li&gt;
-&lt;li&gt;Japanese&lt;/li&gt;
-&lt;li&gt;English (India)&lt;/li&gt;
-&lt;li&gt;English (Welsh)&lt;/li&gt;
-&lt;li&gt;English (Australia)&lt;/li&gt;
-&lt;li&gt;English (US)&lt;/li&gt;
-&lt;li&gt;English (UK)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I think Japanese speech sounds very natural. Sometime it will be a strange accent, but if I register a word with Lexicon, we can improve the quality by myself. Japanese sample voice as following:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://chezou.tumblr.com/post/153883804175/amazon&#34;&gt;http://chezou.tumblr.com/post/153883804175/amazon&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;I often find interesting articles in Medium, but since reading long English article is a bit tough for non native English speaker like me. So I came up with if I made the article to voice, I would listen it easily. That’s why I wrote the code to convert articles to speech with Ruby like following:&lt;/p&gt;
-
-&lt;script src=&#34;https://gist.github.com/chezou/9919f5065cbc52f8d0349d3084ac3616.js&#34;&gt;&lt;/script&gt;
-
-&lt;p&gt;There are some important restrictions of API:
-- The number of characters per API is 1500 characters
-- Long voice is truncated after 5 minutes&lt;/p&gt;
-
-&lt;p&gt;Read &lt;a href=&#34;http://docs.aws.amazon.com/polly/latest/dg/limits.html&#34;&gt;more in detail…&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Actually, I tried to convert the following article just found in Hckr news. I can hear it comfortably.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://blog.data.gov.sg/how-we-caught-the-circle-line-rogue-train-with-data-79405c86ab6a#.7elmtv7o7&#34;&gt;How the Circle Line rogue train was caught with data&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;If I did a bit more hard work, I can generate sounds of the latest articles on a specific site from RSS and play back the sounds from mobile saved in Dropbox.&lt;/p&gt;
-
-&lt;p&gt;Honestly, Amazon Polly is cheap, multilingual and natural as it is, and API is easy to use like other AWS services. It makes me feel that companies in Japan that have worked hard for existing TTS systems are in very difficult time. As a developer, I am looking forward to using various purpose and get more better services using Polly.&lt;/p&gt;
-</description>
-    </item>
     
     <item>
       <title>livy &amp; Jupyter notebook &amp; sparkmagic = Powerful &amp; Easy notebook for Data Scientist</title>

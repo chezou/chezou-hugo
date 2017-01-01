@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Fixed-rss on Democratizing Data</title>
-    <link>https://chezo.uno/fixed/index.xml</link>
-    <description>Recent content in Fixed-rss on Democratizing Data</description>
+    <title>Fixed on Democratizing Data</title>
+    <link>https://chezo.uno/fixed/</link>
+    <description>Recent content in Fixed on Democratizing Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Tue, 23 Aug 2016 15:17:52 +0900</lastBuildDate>
@@ -39,6 +39,11 @@
 
 &lt;ul&gt;
 &lt;li&gt;julia version of &lt;a href=&#34;http://www.loria.fr/~rougier/teaching/numpy.100/&#34;&gt;100 numpy exercises&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/chezou/tabula-py&#34;&gt;tabula-py&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Simple wrapper of tabula-java: extract table from PDF into pandas DataFrame&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 

@@ -2,12 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Democratizing Data</title>
-    <link>https://chezo.uno/blog/index.xml</link>
+    <link>https://chezo.uno/blog/</link>
     <description>Recent content in Blog on Democratizing Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Wed, 24 Aug 2016 16:07:02 +0900</lastBuildDate>
-    <atom:link href="https://chezo.uno/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://chezo.uno/blog/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>livy &amp; Jupyter notebook &amp; sparkmagic = Powerful &amp; Easy notebook for Data Scientist</title>
@@ -15,167 +17,9 @@
       <pubDate>Wed, 24 Aug 2016 16:07:02 +0900</pubDate>
       
       <guid>https://chezo.uno/blog/livy--jupyter-notebook--sparkmagic--powerful--easy-notebook-for-data-scientist/</guid>
-      <description>
-
-&lt;p&gt;livy is a REST server of Spark. You can see &lt;a href=&#34;https://spark-summit.org/2016/events/livy-a-rest-web-service-for-apache-spark/&#34;&gt;the talk of the Spark Summit 2016&lt;/a&gt;,  &lt;a href=&#34;https://azure.microsoft.com/en-us/documentation/articles/hdinsight-apache-spark-jupyter-notebook-kernels/&#34;&gt;Microsoft uses livy for HDInsight with Jupyter notebook and sparkmagic&lt;/a&gt;. &lt;a href=&#34;http://jupyter.org/&#34;&gt;Jupyter notebook&lt;/a&gt; is one of the most popular notebook OSS within data scientists. Using sparkmagic + Jupyter notebook, data scientists can execute ad-hoc Spark job easily.&lt;/p&gt;
-
-&lt;h1 id=&#34;why-livy-is-good&#34;&gt;Why livy is good?&lt;/h1&gt;
-
-&lt;p&gt;According to &lt;a href=&#34;http://livy.io/overview.html&#34;&gt;the official document&lt;/a&gt;, livy has features like:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Have long running SparkContexts that can be used for multiple Spark jobs, by multiple clients&lt;/li&gt;
-&lt;li&gt;Share cached RDDs or Dataframes across multiple jobs and clients&lt;/li&gt;
-&lt;li&gt;Multiple SparkContexts can be managed simultaneously, and they run on the cluster (YARN/Mesos) instead of the Livy Server for good fault tolerance and concurrency&lt;/li&gt;
-&lt;li&gt;Jobs can be submitted as precompiled jars, snippets of code, or via Java/Scala client API&lt;/li&gt;
-&lt;li&gt;Ensure security via secure authenticated communication&lt;/li&gt;
-&lt;li&gt;Apache License, 100% open source&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;why-livy-sparkmagic&#34;&gt;Why livy + sparkmagic?&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/jupyter-incubator/sparkmagic&#34;&gt;sparkmagic&lt;/a&gt; is a client of livy using with Jupyter notebook. When we write Spark code at our local Jupyter client, then sparkmagic runs the Spark job through livy. Using sparkmagic + Jupyter notebook, data scientists can use Spark from their own Jupyter notebook, which is running on their localhost. We don&amp;rsquo;t need any Spark configuration getting from the CDH cluster. So we can execute Spark job in cluster like running on a local machine.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;blog/sparkmagic_diagram.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;diagram from &lt;a href=&#34;https://github.com/jupyter-incubator/sparkmagic/raw/master/screenshots/diagram.png&#34;&gt;https://github.com/jupyter-incubator/sparkmagic/raw/master/screenshots/diagram.png&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;requirements&#34;&gt;Requirements&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Spark Cluster
-
-&lt;ul&gt;
-&lt;li&gt;Cloudera Director is nice to prepare&lt;/li&gt;
-&lt;li&gt;Install git and maven&lt;/li&gt;
-&lt;li&gt;I tried CDH 5.7 with CentOS 7&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Local jupyter client
-
-&lt;ul&gt;
-&lt;li&gt;virtualenv and virtualenvwrapper is awesome&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;preparation&#34;&gt;Preparation&lt;/h1&gt;
-
-&lt;p&gt;In order to use livy with sparkmagic, we should install livy into the Spark gateway server and sparkmagic into local machine.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/cloudera/livy&#34;&gt;cloudera/livy: Livy is an open source REST interface for interacting with Apache Spark from anywhere&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/jupyter-incubator/sparkmagic&#34;&gt;jupyter-incubator/sparkmagic: Jupyter magics and kernels for working with remote Spark clusters&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;install-r&#34;&gt;Install R&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ sudo yum install -y epel-release
-$ sudo yum install -y R
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;build-livy&#34;&gt;Build livy&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ git clone git@github.com:cloudera/livy.git
-$ cd livy
-$ mvn -Dspark.version=1.6.0 -DskipTests clean package
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Because of failing test at that time, I added &lt;code&gt;-DskipTests&lt;/code&gt; to build.&lt;/p&gt;
-
-&lt;h2 id=&#34;run-livy&#34;&gt;Run livy&lt;/h2&gt;
-
-&lt;p&gt;Set environment variables as following:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ export SPARK_HOME=/opt/cloudera/parcels/CDH-5.7.1-1.cdh5.7.1.p0.11/lib/spark
-$ export HADOOP_CONF_DIR=/etc/hadoop/conf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Add following configuration into livy.conf:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;livy.server.session.factory = yarn
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Let&amp;rsquo;s run livy server&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ ./bin/livy-server
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Open another terminal and check the server&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ curl localhost:8998/sessions
-{&amp;quot;from&amp;quot;:0,&amp;quot;total&amp;quot;:0,&amp;quot;sessions&amp;quot;:[]}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As livy&amp;rsquo;s Default port number is 8998, we should open or forward the port.&lt;/p&gt;
-
-&lt;h2 id=&#34;prepare-sparkmagic-in-local-machine&#34;&gt;Prepare sparkmagic in local machine&lt;/h2&gt;
-
-&lt;p&gt;Install sparkmagic with &lt;a href=&#34;https://github.com/jupyter-incubator/sparkmagic&#34;&gt;document&lt;/a&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ pip install sparkmagic
-$ jupyter nbextension enable --py --sys-prefix widgetsnbextension
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then install wapper kernel. Do pip show sparkmagic and you can see the Location info. In the following example, Location is /Users/ariga/.virtualenvs/ibis/lib/python3.5/site-packages.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ pip show sparkmagic
----
-Metadata-Version: 2.0
-Name: sparkmagic
-Version: 0.2.3
-Summary: SparkMagic: Spark execution via Livy
-Home-page: https://github.com/jupyter-incubator/sparkmagic/sparkmagic
-Author: Jupyter Development Team
-Author-email: jupyter@googlegroups.org
-Installer: pip
-License: BSD 3-clause
-Location: /Users/ariga/.virtualenvs/ibis/lib/python3.5/site-packages
-Requires: ipywidgets, pandas, ipython, requests, mock, autovizwidget, numpy, nose, ipykernel, notebook, hdijupyterutils
-Classifiers:
-  Development Status :: 4 - Beta
-  Environment :: Console
-  Intended Audience :: Science/Research
-  License :: OSI Approved :: BSD License
-  Natural Language :: English
-  Programming Language :: Python :: 2.6
-  Programming Language :: Python :: 2.7
-  Programming Language :: Python :: 3.3
-  Programming Language :: Python :: 3.4
-$ cd /Users/ariga/.virtualenvs/ibis/lib/python3.5/site-packages
-$ jupyter-kernelspec install sparkmagic/kernels/sparkkernel
-$ jupyter-kernelspec install sparkmagic/kernels/pysparkkernel
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Copy the &lt;a href=&#34;https://github.com/jupyter-incubator/sparkmagic/blob/master/sparkmagic/example_config.json&#34;&gt;config.json&lt;/a&gt; into ~/.sparkmagic/config.json and modify it.&lt;/p&gt;
-
-&lt;h3 id=&#34;run-jupyter-notebook&#34;&gt;Run jupyter notebook&lt;/h3&gt;
-
-&lt;p&gt;Before running jupyter, I recommend to check the connection from local machine to the livy server.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ curl YOUR_HOSTNAME:8998/sessions
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Launch jupyter notebook and create PySpark notebook (of course you can use Spark)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ jupyter notebook
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The example notebook is here&lt;/p&gt;
-
-&lt;iframe src=&#34;https://nbviewer.jupyter.org/gist/chezou/88568ce2bb620107cfdbdd20f0c966ae&#34; width=800 height=1200&gt; &lt;/iframe&gt;
-
-&lt;p&gt;In the nbviewer, we can not see the result of SQL, but we can visualize the result of SQL with &lt;code&gt;%%sql&lt;/code&gt; magic command. That&amp;rsquo;s awesome :)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;blog/example-sparkmagic.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;If you use &lt;code&gt;%%local&lt;/code&gt;, you can use local Python libraries such as scikit-learn, seaborn etc, with received results from PySpark.&lt;/p&gt;
-
-&lt;h1 id=&#34;references&#34;&gt;References&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://livy.io/&#34;&gt;Livy, an Open Source REST Service for Apache Spark&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://gethue.com/how-to-use-the-livy-spark-rest-job-server-for-interactive-spark-2-2/&#34;&gt;How to use the Livy Spark REST Job Server API for doing some interactive Spark with curl | Hue - Hadoop User Experience - The Apache Hadoop UI&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>livy is a REST server of Spark. You can see the talk of the Spark Summit 2016, Microsoft uses livy for HDInsight with Jupyter notebook and sparkmagic. Jupyter notebook is one of the most popular notebook OSS within data scientists. Using sparkmagic + Jupyter notebook, data scientists can execute ad-hoc Spark job easily.
+Why livy is good? According to the official document, livy has features like:
+ Have long running SparkContexts that can be used for multiple Spark jobs, by multiple clients Share cached RDDs or Dataframes across multiple jobs and clients Multiple SparkContexts can be managed simultaneously, and they run on the cluster (YARN/Mesos) instead of the Livy Server for good fault tolerance and concurrency Jobs can be submitted as precompiled jars, snippets of code, or via Java/Scala client API Ensure security via secure authenticated communication Apache License, 100% open source  Why livy + sparkmagic?</description>
     </item>
     
     <item>
@@ -184,80 +28,10 @@ $ jupyter-kernelspec install sparkmagic/kernels/pysparkkernel
       <pubDate>Tue, 23 Aug 2016 13:46:03 +0900</pubDate>
       
       <guid>https://chezo.uno/blog/building-predictive-model-with-ibis-and-scikit-learn/</guid>
-      <description>
-
-&lt;h1 id=&#34;tl-dr&#34;&gt;tl;dr&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;visualising &lt;a href=&#34;http://grouplens.org/datasets/movielens/&#34;&gt;MovieLens&lt;/a&gt; 20M data (famous movie rating data) with &lt;a href=&#34;http://www.ibis-project.org/&#34;&gt;Ibis&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;build predictive model for movie favor with scikit-learn&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/chezou/ibis-demo&#34;&gt;repo&lt;/a&gt; / &lt;a href=&#34;https://github.com/chezou/ibis-demo/blob/master/ibis_demo_en.ipynb&#34;&gt;notebook&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;what-is-ibis&#34;&gt;What is Ibis?&lt;/h1&gt;
-
-&lt;p&gt;Ibis is a bridge between Python and Big Data. Ibis enables pandas handling Big Data.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://chezo.uno/blog/ibis-overview1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;For more detail, see Wes&amp;rsquo;s presentation.&lt;/p&gt;
-
-&lt;p&gt;&lt;iframe src=&#34;//www.slideshare.net/slideshow/embed_code/key/MGvd2c7LUgy9et&#34; width=&#34;595&#34; height=&#34;485&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; style=&#34;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&#34; allowfullscreen&gt; &lt;/iframe&gt; &lt;div style=&#34;margin-bottom:5px&#34;&gt; &lt;strong&gt; &lt;a href=&#34;//www.slideshare.net/wesm/ibis-scaling-python-analytics-on-hadoop-and-impala&#34; title=&#34;Ibis: Scaling Python Analytics on Hadoop and Impala&#34; target=&#34;_blank&#34;&gt;Ibis: Scaling Python Analytics on Hadoop and Impala&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&#34;//www.slideshare.net/wesm&#34; target=&#34;_blank&#34;&gt;Wes McKinney&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;
-
-&lt;p&gt;As you know, pandas is known as a killer application for data analysis. In my previous job, which is known as a developer of &lt;a href=&#34;https://speakerdeck.com/a_matsuda/the-recipe-for-the-worlds-largest-rails-monolith&#34;&gt;world largest monolithic Ruby on Rails application&lt;/a&gt;, many Rails developer attracted with pandas and Jupyter notebook for sharing analysis result.&lt;/p&gt;
-
-&lt;h1 id=&#34;why-ibis&#34;&gt;Why Ibis?&lt;/h1&gt;
-
-&lt;p&gt;pandas loads data on memory, so we have to filter with some SQL before analyzing. But we actualy want to get insight and handle without SQL.&lt;/p&gt;
-
-&lt;h1 id=&#34;preparation&#34;&gt;Preparation&lt;/h1&gt;
-
-&lt;h2 id=&#34;impala-cluster&#34;&gt;Impala cluster&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;CDH 5.7 with Cloudera Director 2.1&lt;/li&gt;
-&lt;li&gt;required port
-
-&lt;ul&gt;
-&lt;li&gt;impalad node&amp;rsquo;s 21050 port&lt;/li&gt;
-&lt;li&gt;NN&amp;rsquo;s 50070 port&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;table is created with parquet on S3&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;ibis&#34;&gt;Ibis&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Python 3.5&lt;/li&gt;
-&lt;li&gt;using wheel and virtualenv, I didn&amp;rsquo;t use conda&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;notebook&#34;&gt;Notebook&lt;/h1&gt;
-
-&lt;script src=&#34;https://gist.github.com/chezou/90950ab7a17df6d8dda972752787a246.js&#34;&gt;&lt;/script&gt;
-
-&lt;p&gt;Full notebook repo is &lt;a href=&#34;https://github.com/chezou/ibis-demo/&#34;&gt;here&lt;/a&gt;.
-I also executed same code for Redshift, but several dialects prevent exection&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/chezou/ibis-demo/blob/master/ibis_demo_redshift.ipynb&#34;&gt;https://github.com/chezou/ibis-demo/blob/master/ibis_demo_redshift.ipynb&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;faq&#34;&gt;FAQ&lt;/h1&gt;
-
-&lt;h2 id=&#34;what-is-the-difference-between-pyspark&#34;&gt;What is the difference between PySpark?&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Easy to setup. It is just like connecting DB&lt;/li&gt;
-&lt;li&gt;Fast x10. So that we can x10 experiences. It makes us innovations!&lt;/li&gt;
-&lt;li&gt;We can rapid prototyping with Ibis.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;which-is-prefer-to-build-model-ibis-scikit-learn-or-spark-mllib&#34;&gt;Which is prefer to build model Ibis + scikit-learn or Spark + MLlib?&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;It depends on data size.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.infoq.com/news/2016/07/meson-framework-netflix&#34;&gt;Netflix uses Spark and R for building predictive models&lt;/a&gt;. Netflix uses R in order to model filtered data such as specific country, and they use Spark for global model.&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>tl;dr  visualising MovieLens 20M data (famous movie rating data) with Ibis build predictive model for movie favor with scikit-learn repo / notebook  What is Ibis? Ibis is a bridge between Python and Big Data. Ibis enables pandas handling Big Data.
+For more detail, see Wes&amp;rsquo;s presentation.
+  Ibis: Scaling Python Analytics on Hadoop and Impala  from Wes McKinney 
+As you know, pandas is known as a killer application for data analysis.</description>
     </item>
     
   </channel>
